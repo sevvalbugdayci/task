@@ -54,18 +54,17 @@ const ProfileImage = styled.img`
 
 const CustomHeader: React.FC = () => {
   return (
-
-      <StyledHeader>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Logo src="/LogoM.svg" alt="Logo" /> 
-          <SearchInput placeholder="Search" prefix={<SearchOutlined />} />
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <NotificationIcon src="/Notification.svg" alt="Notification"/>
-          <ProfileImage src="/img.svg" alt="Profile" />
-        </div>
-      </StyledHeader>
-
+      <RequireAuth>
+        <StyledHeader>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Logo src="/LogoM.svg" alt="Logo" /> 
+            <SearchInput placeholder="Search" prefix={<SearchOutlined />} />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <NotificationIcon src="/Notification.svg" alt="Notification"/>
+            <ProfileImage src="/img.svg" alt="Profile" />
+          </div>
+    </StyledHeader></RequireAuth> 
   );
 };
 

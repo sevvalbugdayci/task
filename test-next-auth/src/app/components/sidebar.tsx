@@ -137,6 +137,7 @@ const CustomSidebar: React.FC<{ onSelect: (key: string) => void; }> = ({ onSelec
   };
 
   return (  
+    <RequireAuth>
       <SidebarContainer trigger={null} collapsible 
       collapsed={collapsed}
       style={{ transform: collapsed ? 'translateX(-100%)' : 'translateX(0%' }}
@@ -170,6 +171,8 @@ const CustomSidebar: React.FC<{ onSelect: (key: string) => void; }> = ({ onSelec
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </CollapseToggle>
       </SidebarContainer>
+    </RequireAuth>
+      
   );
 };
 

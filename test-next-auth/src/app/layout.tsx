@@ -2,7 +2,8 @@
 import "./globals.css";
 import { SessionProvider, useSession } from "next-auth/react";
 import CustomHeader from "./components/header"; 
-import RequireAuth from "./components/RequireAuth"; 
+import { useRouter } from 'next/navigation'; 
+import { useEffect } from 'react';
 import CustomSidebar from "./components/sidebar"; 
 import { Layout } from "antd"; 
 import React, { ReactNode } from "react";  
@@ -15,9 +16,17 @@ interface AuthLayoutProps {
 
 function AuthLayout({ children }: AuthLayoutProps) {
   const { data: session } = useSession();
+  const router = useRouter();
 
-  if (!session) {
-    return <>{children}</>;
+  useEffect(() => {
+    if (status === "loading") return;
+    if (!session) {
+      router.push("/auth/login");
+    }
+  }, [session, status, router]);
+
+  if (status === "loading") {
+    return <div style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</div>;
   }
 
   return (
